@@ -6,7 +6,15 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface DummyComp {
+    interface AtmBtn {
+        "disabled": boolean;
+    }
+    interface AtmInput {
+        "disabled": boolean;
+        "placeholder": string;
+        "reset": () => Promise<void>;
+    }
+    interface MolTransaction {
     }
     interface MyComponent {
         /**
@@ -23,12 +31,28 @@ export namespace Components {
         "middle": string;
     }
 }
+export interface AtmInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAtmInputElement;
+}
 declare global {
-    interface HTMLDummyCompElement extends Components.DummyComp, HTMLStencilElement {
+    interface HTMLAtmBtnElement extends Components.AtmBtn, HTMLStencilElement {
     }
-    var HTMLDummyCompElement: {
-        prototype: HTMLDummyCompElement;
-        new (): HTMLDummyCompElement;
+    var HTMLAtmBtnElement: {
+        prototype: HTMLAtmBtnElement;
+        new (): HTMLAtmBtnElement;
+    };
+    interface HTMLAtmInputElement extends Components.AtmInput, HTMLStencilElement {
+    }
+    var HTMLAtmInputElement: {
+        prototype: HTMLAtmInputElement;
+        new (): HTMLAtmInputElement;
+    };
+    interface HTMLMolTransactionElement extends Components.MolTransaction, HTMLStencilElement {
+    }
+    var HTMLMolTransactionElement: {
+        prototype: HTMLMolTransactionElement;
+        new (): HTMLMolTransactionElement;
     };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
@@ -37,12 +61,22 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
-        "dummy-comp": HTMLDummyCompElement;
+        "atm-btn": HTMLAtmBtnElement;
+        "atm-input": HTMLAtmInputElement;
+        "mol-transaction": HTMLMolTransactionElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
-    interface DummyComp {
+    interface AtmBtn {
+        "disabled"?: boolean;
+    }
+    interface AtmInput {
+        "disabled"?: boolean;
+        "onInput"?: (event: AtmInputCustomEvent<string>) => void;
+        "placeholder"?: string;
+    }
+    interface MolTransaction {
     }
     interface MyComponent {
         /**
@@ -59,7 +93,9 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
-        "dummy-comp": DummyComp;
+        "atm-btn": AtmBtn;
+        "atm-input": AtmInput;
+        "mol-transaction": MolTransaction;
         "my-component": MyComponent;
     }
 }
@@ -67,7 +103,9 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "dummy-comp": LocalJSX.DummyComp & JSXBase.HTMLAttributes<HTMLDummyCompElement>;
+            "atm-btn": LocalJSX.AtmBtn & JSXBase.HTMLAttributes<HTMLAtmBtnElement>;
+            "atm-input": LocalJSX.AtmInput & JSXBase.HTMLAttributes<HTMLAtmInputElement>;
+            "mol-transaction": LocalJSX.MolTransaction & JSXBase.HTMLAttributes<HTMLMolTransactionElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
