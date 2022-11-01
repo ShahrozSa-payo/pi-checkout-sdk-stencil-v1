@@ -9,10 +9,16 @@ export namespace Components {
     interface AtmBtn {
         "disabled": boolean;
     }
+    interface AtmFrame {
+    }
     interface AtmInput {
         "disabled": boolean;
         "placeholder": string;
         "reset": () => Promise<void>;
+    }
+    interface MolBrowserApis {
+    }
+    interface MolPopup {
     }
     interface MolTransaction {
     }
@@ -30,6 +36,8 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface OrgSdk {
+    }
 }
 export interface AtmInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -42,11 +50,29 @@ declare global {
         prototype: HTMLAtmBtnElement;
         new (): HTMLAtmBtnElement;
     };
+    interface HTMLAtmFrameElement extends Components.AtmFrame, HTMLStencilElement {
+    }
+    var HTMLAtmFrameElement: {
+        prototype: HTMLAtmFrameElement;
+        new (): HTMLAtmFrameElement;
+    };
     interface HTMLAtmInputElement extends Components.AtmInput, HTMLStencilElement {
     }
     var HTMLAtmInputElement: {
         prototype: HTMLAtmInputElement;
         new (): HTMLAtmInputElement;
+    };
+    interface HTMLMolBrowserApisElement extends Components.MolBrowserApis, HTMLStencilElement {
+    }
+    var HTMLMolBrowserApisElement: {
+        prototype: HTMLMolBrowserApisElement;
+        new (): HTMLMolBrowserApisElement;
+    };
+    interface HTMLMolPopupElement extends Components.MolPopup, HTMLStencilElement {
+    }
+    var HTMLMolPopupElement: {
+        prototype: HTMLMolPopupElement;
+        new (): HTMLMolPopupElement;
     };
     interface HTMLMolTransactionElement extends Components.MolTransaction, HTMLStencilElement {
     }
@@ -60,21 +86,37 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLOrgSdkElement extends Components.OrgSdk, HTMLStencilElement {
+    }
+    var HTMLOrgSdkElement: {
+        prototype: HTMLOrgSdkElement;
+        new (): HTMLOrgSdkElement;
+    };
     interface HTMLElementTagNameMap {
         "atm-btn": HTMLAtmBtnElement;
+        "atm-frame": HTMLAtmFrameElement;
         "atm-input": HTMLAtmInputElement;
+        "mol-browser-apis": HTMLMolBrowserApisElement;
+        "mol-popup": HTMLMolPopupElement;
         "mol-transaction": HTMLMolTransactionElement;
         "my-component": HTMLMyComponentElement;
+        "org-sdk": HTMLOrgSdkElement;
     }
 }
 declare namespace LocalJSX {
     interface AtmBtn {
         "disabled"?: boolean;
     }
+    interface AtmFrame {
+    }
     interface AtmInput {
         "disabled"?: boolean;
-        "onInput"?: (event: AtmInputCustomEvent<string>) => void;
+        "onEntry"?: (event: AtmInputCustomEvent<string>) => void;
         "placeholder"?: string;
+    }
+    interface MolBrowserApis {
+    }
+    interface MolPopup {
     }
     interface MolTransaction {
     }
@@ -92,11 +134,17 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface OrgSdk {
+    }
     interface IntrinsicElements {
         "atm-btn": AtmBtn;
+        "atm-frame": AtmFrame;
         "atm-input": AtmInput;
+        "mol-browser-apis": MolBrowserApis;
+        "mol-popup": MolPopup;
         "mol-transaction": MolTransaction;
         "my-component": MyComponent;
+        "org-sdk": OrgSdk;
     }
 }
 export { LocalJSX as JSX };
@@ -104,9 +152,13 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "atm-btn": LocalJSX.AtmBtn & JSXBase.HTMLAttributes<HTMLAtmBtnElement>;
+            "atm-frame": LocalJSX.AtmFrame & JSXBase.HTMLAttributes<HTMLAtmFrameElement>;
             "atm-input": LocalJSX.AtmInput & JSXBase.HTMLAttributes<HTMLAtmInputElement>;
+            "mol-browser-apis": LocalJSX.MolBrowserApis & JSXBase.HTMLAttributes<HTMLMolBrowserApisElement>;
+            "mol-popup": LocalJSX.MolPopup & JSXBase.HTMLAttributes<HTMLMolPopupElement>;
             "mol-transaction": LocalJSX.MolTransaction & JSXBase.HTMLAttributes<HTMLMolTransactionElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "org-sdk": LocalJSX.OrgSdk & JSXBase.HTMLAttributes<HTMLOrgSdkElement>;
         }
     }
 }

@@ -9,7 +9,7 @@ export class AtmInput {
   @Prop() disabled: boolean;
   @Prop() placeholder: string;
 
-  @Event() input: EventEmitter<string>;
+  @Event() entry: EventEmitter<string>;
 
   @State() value: string = '';
 
@@ -17,7 +17,7 @@ export class AtmInput {
     event.stopPropagation();
     const value: string = (event.target as HTMLInputElement).value;
     this.value = value;
-    this.input.emit(value);
+    this.entry.emit(value);
   };
 
   @Method()

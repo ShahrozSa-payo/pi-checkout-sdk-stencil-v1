@@ -1,5 +1,5 @@
 import { Component, Prop, h } from '@stencil/core';
-import { format } from '../../utils/utils';
+import { format } from '../../../utils/utils';
 
 @Component({
   tag: 'my-component',
@@ -27,8 +27,10 @@ export class MyComponent {
   }
 
   render() {
-    return <div>
-      Hello, World! I'm {this.getText()}
-    </div>;
+    return (
+      <div>
+        <p>Hello, World! I'm {this.getText()}</p>
+      </div>
+    );
   }
 }

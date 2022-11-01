@@ -1,6 +1,7 @@
 import { Component, h, State } from '@stencil/core';
 
 import ModuleApi from '../../../apis/module.api.js';
+import { message } from '../../../utils/message.util.js';
 
 @Component({
   tag: 'mol-transaction',
@@ -19,12 +20,15 @@ export class MolTransaction {
   submit = () => {
     this.loading = true;
     ModuleApi.create(this.title, Number.parseInt(this.userId)).then(res => {
+      let type = '';
       if (!res.message) {
         this.titleRef.reset();
         this.userIdRef.reset();
+        type = 'success';
       }
 
       this.response = res.message || 'Successfully created new record (' + res.id + ')';
+      message(type, this.response);
       this.loading = false;
     });
   };
@@ -33,8 +37,8 @@ export class MolTransaction {
     return (
       <div class="container">
         <div class="row">
-          <atm-input disabled={this.loading} placeholder="Title" onInput={e => (this.title = e.detail)} ref={el => (this.titleRef = el)} />
-          <atm-input disabled={this.loading} placeholder="User ID" onInput={e => (this.userId = e.detail)} ref={el => (this.userIdRef = el)} />
+          <atm-input disabled={this.loading} placeholder="Title" onEntry={e => (this.title = e.detail)} ref={el => (this.titleRef = el)} />
+          <atm-input disabled={this.loading} placeholder="User ID" onEntry={e => (this.userId = e.detail)} ref={el => (this.userIdRef = el)} />
           <atm-btn disabled={this.loading} onClick={this.submit}>
             Submit
           </atm-btn>

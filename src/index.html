@@ -7,8 +7,55 @@
 
     <script type="module" src="/build/pi-checkout-sdk-stencil-v1.esm.js"></script>
     <script nomodule src="/build/pi-checkout-sdk-stencil-v1.js"></script>
+
+    <script>
+      window.addEventListener('message', e => {
+        console.log('Listened Message Event from outside :: ', e.data);
+      });
+    </script>
+
+    <style>
+      h1 {
+        font-size: 20px;
+        color: blue;
+      }
+      .br {
+        background: blue;
+        width: 100%;
+        height: 4px;
+        margin: 20px 0;
+        display: block;
+      }
+
+      button {
+        border: 2px solid blue;
+        padding: 10px 15px;
+        color: blue;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
-    <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+    <h1>Consumer Application Heading H1 of font size 20</h1>
+
+    <div class="br"></div>
+
+    <org-sdk></org-sdk>
+
+    <div class="br"></div>
+
+    <mol-transaction></mol-transaction>
+
+    <div class="br"></div>
+
+    <button id="test101">Show Message from Outside</button>
+
+    <script defer type="module">
+      import { message } from '/build/index.esm.js';
+
+      document.getElementById('test101').addEventListener('click', () => {
+        message('success', 'This message is from outside sdk', 2500, 'blue');
+      });
+    </script>
   </body>
 </html>
