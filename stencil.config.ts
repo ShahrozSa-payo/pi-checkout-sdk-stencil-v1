@@ -2,6 +2,7 @@ import { Config } from '@stencil/core';
 
 export const config: Config = {
   namespace: 'pi-checkout-sdk-stencil-v1',
+  buildEs5: true,
   outputTargets: [
     {
       type: 'dist',
